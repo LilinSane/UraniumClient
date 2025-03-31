@@ -1,0 +1,20 @@
+<app-navigation></app-navigation>
+<div class="container mt-5">
+  <ng-container [ngSwitch]="currentTable">
+    <app-customers *ngSwitchCase="'customer'"></app-customers>
+    <app-areas *ngSwitchCase="'area'"></app-areas>
+    <app-drill-hole-types *ngSwitchCase="'drillHoleType'"></app-drill-hole-types>
+    <app-drill-holes *ngSwitchCase="'drillHole'" ></app-drill-holes>
+    <app-drilling-types *ngSwitchCase="'drillingType'"></app-drilling-types>
+    <app-drilling-units *ngSwitchCase="'drillingUnit'"></app-drilling-units>
+    <app-work-directions *ngSwitchCase="'workDirection'"></app-work-directions>
+    <app-work-types *ngSwitchCase="'workType'"></app-work-types>
+    <app-work-sub-types *ngSwitchCase="'workSubType'"></app-work-sub-types>
+  </ng-container>
+</div>
+<p class="ms-5">Список справочников</p>
+<div class="d-flex flex-wrap" >
+  <app-table-card class="p-3" *ngFor="let table of tableList" [title]="table.title" (click)="setCurrentTable(table.key)"></app-table-card>
+</div>
+
+

@@ -1,0 +1,32 @@
+<div class="modal-container">
+  <p>Добавить Вид работы</p>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Наименование</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+      <mat-label>Выберите Направление</mat-label>
+      <input type="text" matInput [matAutocomplete]="auto" formControlName="workDirection" required>
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (direction of filteredWorkDirections | async; track direction) {
+          <mat-option [value]="direction.name">{{direction.name}}</mat-option>
+        }
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('workDirection')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+
+    <div class="button-container">
+      <button mat-button color="danger" (click)="onCancel()">Отмена</button>
+      <button mat-button color="success" (click)="onSave()" [disabled]="form.invalid">Сохранить</button>
+    </div>
+  </form>
+</div>

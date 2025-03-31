@@ -1,1 +1,166 @@
-/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.modal-container {
+  padding: 24px;
+  min-width: 350px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+mat-form-field {
+  width: 75%;
+}
+
+button[mat-button] {
+  text-transform: uppercase;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+  border: none;
+}
+
+button[mat-button][color="danger"] {
+  background-color: #dc3545;
+  color: white;
+  box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);
+}
+
+button[mat-button][color="danger"]:hover {
+  background-color: #bb2d3b;
+  box-shadow: 0 4px 10px rgba(220, 53, 69, 0.4);
+}
+
+button[mat-button][color="success"] {
+  background-color: #198754;
+  color: white;
+  box-shadow: 0 2px 6px rgba(25, 135, 84, 0.3);
+}
+
+button[mat-button][color="success"]:hover {
+  background-color: #157347;
+  box-shadow: 0 4px 10px rgba(25, 135, 84, 0.4);
+}
+
+button[mat-button][color="neutral"] {
+  background-color: #6c757d;
+  color: white;
+  box-shadow: 0 2px 6px rgba(108, 117, 125, 0.3);
+}
+
+button[mat-button][color="neutral"]:hover {
+  background-color: #5c636a;
+  box-shadow: 0 4px 10px rgba(108, 117, 125, 0.4);
+}
+
+button[mat-button]:active {
+  transform: scale(0.97);
+}
+
+.table-header th{
+  background-color: #F8F8F8;
+}
+
+.table-header tr{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-td{
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 5px;
+  white-space: nowrap;
+}
+
+.icon-td span{
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.simple-line-icons--trash {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cpath fill='%23000' d='m896.8 159.024l-225.277.001V71.761c0-40.528-33.008-72.496-73.536-72.496H426.003c-40.528 0-73.52 31.968-73.52 72.496v87.264h-225.28c-17.665 0-32 14.336-32 32s14.335 32 32 32h44.015l74.24 739.92c3.104 34.624 32.608 61.776 67.136 61.776h398.8c34.528 0 64-27.152 67.088-61.472l74.303-740.24h44.016c17.68 0 32-14.336 32-32s-14.32-31.985-32-31.985zM416.482 71.762c0-5.232 4.271-9.505 9.52-9.505h171.984c5.248 0 9.536 4.273 9.536 9.505v87.264h-191.04zm298.288 885.44c-.16 1.777-2.256 3.536-3.376 3.536h-398.8c-1.12 0-3.232-1.744-3.425-3.84l-73.632-733.856H788.45z'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.simple-line-icons--trash:hover {
+  background-color: red;
+}
+
+.proicons--pencil {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M14.44 5.78L4.198 16.02a2 2 0 0 0-.565 1.125l-.553 3.774l3.775-.553A2 2 0 0 0 7.98 19.8L18.22 9.56m-3.78-3.78l2.229-2.23a1.6 1.6 0 0 1 2.263 0l1.518 1.518a1.6 1.6 0 0 1 0 2.263l-2.23 2.23M14.44 5.78l3.78 3.78'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.proicons--pencil:hover{
+  background-color: goldenrod;
+}
+
+.custom-dialog-container .mat-dialog-container {
+  padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.success {
+  background-color: #198754;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.success::before {
+  content: '✔';
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.error {
+  background-color: #dc3545;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.error::before {
+  content: '⚠';
+  margin-right: 8px;
+  margin-left: 8px;
+}
+

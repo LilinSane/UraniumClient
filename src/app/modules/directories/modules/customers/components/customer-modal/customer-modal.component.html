@@ -1,0 +1,27 @@
+<div class="modal-container">
+  <p>Добавить Заказчика</p>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Наименование</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-label>Активен</mat-label>
+    <mat-radio-group formControlName="isActive" required>
+      <mat-radio-button [value]="true">Да</mat-radio-button>
+      <mat-radio-button [value]="false">Нет</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-error *ngIf="form.get('isActive')?.hasError('required')">
+      Выберите одно из значений
+    </mat-error>
+
+    <div class="button-container">
+      <button mat-button color="danger" (click)="onCancel()">Отмена</button>
+      <button mat-button color="success" (click)="onSave()" [disabled]="form.invalid">Сохранить</button>
+    </div>
+  </form>
+</div>

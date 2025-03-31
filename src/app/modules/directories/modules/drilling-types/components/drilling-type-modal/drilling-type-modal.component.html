@@ -1,0 +1,17 @@
+<div class="modal-container">
+  <p>Добавить Тип Бурового Скважины</p>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Наименование</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-button color="danger" (click)="onCancel()">Отмена</button>
+      <button mat-button color="success" (click)="onSave()" [disabled]="form.invalid">Сохранить</button>
+    </div>
+  </form>
+</div>

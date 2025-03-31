@@ -1,0 +1,16 @@
+::ng-deep pagination .page-item.active .page-link {
+  background-color: black !important;
+  border-color: black !important;
+  color: white !important;
+}
+
+::ng-deep pagination .page-item .page-link {
+
+  color: #313131 !important;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+::ng-deep pagination .page-item{
+  margin-right: 10px;
+}

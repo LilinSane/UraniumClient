@@ -1,0 +1,71 @@
+<form [formGroup]="tableForm">
+  <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
+    <thead>
+    <tr class="table-header">
+      <th>№</th>
+      <th (click)="toggleSort('id')">
+        Код системный
+        <mat-icon class="mt-2" *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
+      </th>
+      <th (click)="toggleSort('name')">
+        Наименование
+        <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
+      </th>
+      <th (click)="toggleSort('isActive')">
+        Активен
+        <mat-icon *ngIf="getSortIcon('isActive')">{{ getSortIcon('isActive') }}</mat-icon>
+      </th>
+      <th (click)="toggleSort('customer')">
+        Заказчик
+        <mat-icon *ngIf="getSortIcon('customer')">{{ getSortIcon('customer') }}</mat-icon>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let area of areas; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ area.id }}</td>
+      <td>{{ area.name }}</td>
+      <td>{{ area.isActive ? "Да" : "Нет" }}</td>
+      <td>{{ area.customer.name }}</td>
+      <td class="icon-td">
+        <span class="proicons--pencil mt-2" (click)="openModalUpdate(area)"></span>
+        <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(area.name, area.id)"></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ng-template #loadingTpl>
+    <div class="loading-container d-flex flex-column align-items-center justify-content-center">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      <p>Загрузка данных...</p>
+    </div>
+  </ng-template>
+
+  <div class="container d-flex justify-content-end mt-3" *ngIf="!isLoading">
+    <div>
+      <button mat-button color="success" type="button" (click)="openModalCreate()">Добавить запись</button>
+    </div>
+  </div>
+</form>
+
+<div class="d-flex flex-column align-items-center" *ngIf="!isLoading">
+  <div class="mb-2">
+    Страница {{ currentPage }} из {{ numPages }}
+  </div>
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="totalItems"
+    [itemsPerPage]="itemsPerPage"
+    [(ngModel)]="currentPage"
+    [maxSize]="maxSize"
+    (numPages)="numPages = $event"
+    (pageChanged)="onPageChange($event)"
+    previousText="< Назад"
+    nextText="Вперед >"
+    firstText="<<"
+    lastText=">>">
+  </pagination>
+</div>

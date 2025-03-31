@@ -1,0 +1,30 @@
+<div class="modal-container">
+  <p>Добавить Подвид работы</p>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Наименование</mat-label>
+      <input matInput formControlName="name" required>
+      <mat-error *ngIf="form.get('name')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Выберите Вид работы</mat-label>
+      <input type="text" matInput [matAutocomplete]="auto" formControlName="workType" required>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let workType of filteredWorkTypes | async" [value]="workType.name">
+          {{ workType.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('workType')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-button color="danger" (click)="onCancel()">Отмена</button>
+      <button mat-button color="success" (click)="onSave()" [disabled]="form.invalid">Сохранить</button>
+    </div>
+  </form>
+</div>

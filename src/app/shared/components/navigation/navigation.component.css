@@ -1,0 +1,24 @@
+.logo{
+  width: 78px;
+  height: 78px;
+}
+
+.nav-ul{
+  margin-left: 80px;
+}
+
+.nav-li{
+  margin-left: 10px;
+}
+
+.nav-a{
+  color: black;
+}
+
+.nav-a:hover{
+  color: #076ce3;
+}
+
+.nav-shadow{
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.25);
+}
