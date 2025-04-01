@@ -3,6 +3,8 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .modal-container {
+  max-height: 80vh;
+  overflow-y: auto;
   padding: 24px;
   min-width: 350px;
 }
@@ -69,6 +71,15 @@ button[mat-button][color="neutral"]:hover {
 
 button[mat-button]:active {
   transform: scale(0.97);
+}
+
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  min-width: 1200px;
 }
 
 .table-header th{

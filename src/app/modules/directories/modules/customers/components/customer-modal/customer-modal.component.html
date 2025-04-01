@@ -9,6 +9,17 @@
       </mat-error>
     </mat-form-field>
 
+    <mat-form-field appearance="outline">
+      <mat-label>БИН/ИНН</mat-label>
+      <input matInput formControlName="taxpayerNum" required>
+      <mat-error *ngIf="form.get('taxpayerNum')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+      <mat-error *ngIf="form.get('taxpayerNum')?.hasError('pattern')">
+        Только цифры допустимы
+      </mat-error>
+    </mat-form-field>
+
     <mat-label>Активен</mat-label>
     <mat-radio-group formControlName="isActive" required>
       <mat-radio-button [value]="true">Да</mat-radio-button>

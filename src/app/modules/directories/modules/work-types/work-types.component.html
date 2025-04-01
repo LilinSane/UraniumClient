@@ -1,36 +1,38 @@
 <form [formGroup]="tableForm">
-  <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
-    <thead>
-    <tr class="table-header">
-      <th>№</th>
-      <th (click)="toggleSort('id')">
-        Код системный
-        <mat-icon *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('name')">
-        Наименование
-        <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('workDirection')">
-        Направление работы
-        <mat-icon *ngIf="getSortIcon('workDirection')">{{ getSortIcon('workDirection') }}</mat-icon>
-      </th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let workType of workTypes; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ workType.id }}</td>
-      <td>{{ workType.name }}</td>
-      <td>{{ workType.workDirection.name }}</td>
-      <td class="icon-td">
-        <span class="proicons--pencil mt-2" (click)="openModalUpdate(workType)"></span>
-        <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(workType.name, workType.id)"></span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
+      <thead>
+      <tr class="table-header">
+        <th>№</th>
+        <th (click)="toggleSort('id')">
+          Код системный
+          <mat-icon *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('name')">
+          Наименование
+          <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('workDirection')">
+          Направление работы
+          <mat-icon *ngIf="getSortIcon('workDirection')">{{ getSortIcon('workDirection') }}</mat-icon>
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let workType of workTypes; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ workType.id }}</td>
+        <td>{{ workType.name }}</td>
+        <td>{{ workType.workDirection.name }}</td>
+        <td class="icon-td">
+          <span class="proicons--pencil mt-2" (click)="openModalUpdate(workType)"></span>
+          <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(workType.name, workType.id)"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
   <ng-template #loadingTpl>
     <div class="loading-container d-flex flex-column align-items-center justify-content-center">

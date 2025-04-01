@@ -11,6 +11,7 @@ import { Observable, startWith, map } from "rxjs";
 import {DrillHole} from "../../../../../../shared/models/entities/drillHole.model";
 import {Area} from "../../../../../../shared/models/entities/area.model";
 import {DrillHoleType} from "../../../../../../shared/models/entities/drillHoleType.model";
+import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-drill-hole-modal',
@@ -23,7 +24,8 @@ import {DrillHoleType} from "../../../../../../shared/models/entities/drillHoleT
     MatRadioModule,
     MatAutocompleteTrigger,
     MatAutocomplete,
-    MatOption
+    MatOption,
+    MatDatepickerModule
   ],
   templateUrl: './drill-hole-modal.component.html',
   styleUrls: ['./drill-hole-modal.component.css']
@@ -49,6 +51,9 @@ export class DrillHoleModalComponent {
     this.form = this.fb.group({
       systemId: [this.drillHole.systemId, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       name: [this.drillHole.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      taskIssueDate: [this.drillHole.taskIssueDate, Validators.required],
+      startDate: [this.drillHole.startDate, Validators.required],
+      depth: [this.drillHole.depth, [Validators.required, Validators.min(0)]],
       isActive: [this.drillHole.isActive, Validators.required],
       area: [this.drillHole.area.name, Validators.required],
       drillHoleType: [this.drillHole.drillHoleType.name, Validators.required]

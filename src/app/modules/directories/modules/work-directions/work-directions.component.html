@@ -1,31 +1,34 @@
 <form [formGroup]="tableForm">
-  <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
-    <thead>
-    <tr class="table-header">
-      <th>№</th>
-      <th (click)="toggleSort('id')">
-        Код системный
-        <mat-icon class="mt-2" *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('name')">
-        Наименование
-        <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
-      </th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let workDirection of workDirections; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ workDirection.id }}</td>
-      <td>{{ workDirection.name }}</td>
-      <td class="icon-td">
-        <span class="proicons--pencil mt-2" (click)="openModalUpdate(workDirection)"></span>
-        <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(workDirection.name, workDirection.id)"></span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
+      <thead>
+      <tr class="table-header">
+        <th>№</th>
+        <th (click)="toggleSort('id')">
+          Код системный
+          <mat-icon class="mt-2" *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('name')">
+          Наименование
+          <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let workDirection of workDirections; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ workDirection.id }}</td>
+        <td>{{ workDirection.name }}</td>
+        <td class="icon-td">
+          <span class="proicons--pencil mt-2" (click)="openModalUpdate(workDirection)"></span>
+          <span class="simple-line-icons--trash mt-2"
+                (click)="openModalDelete(workDirection.name, workDirection.id)"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
   <ng-template #loadingTpl>
     <div class="loading-container d-flex flex-column align-items-center justify-content-center">

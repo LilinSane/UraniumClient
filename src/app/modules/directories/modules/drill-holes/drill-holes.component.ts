@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForOf, NgIf } from '@angular/common';
+import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DrillHole, DrillHoleDTO } from '../../../../shared/models/entities/drillHole.model';
 import { DirectoriesService } from '../../services/directories.service';
@@ -17,6 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { delay } from 'rxjs';
 import { Area } from "../../../../shared/models/entities/area.model";
 import { DrillHoleType } from "../../../../shared/models/entities/drillHoleType.model";
+import {isValidDate} from "rxjs/internal/util/isDate";
 
 @Component({
   selector: 'app-drill-holes',
@@ -29,7 +30,8 @@ import { DrillHoleType } from "../../../../shared/models/entities/drillHoleType.
     FormsModule,
     NgIf,
     MatIcon,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    DatePipe
   ],
   templateUrl: './drill-holes.component.html',
   styleUrl: './drill-holes.component.css'
@@ -125,7 +127,7 @@ export class DrillHolesComponent implements OnInit {
         console.log(selectedArea);
         console.log(selectedType);
         if (selectedArea && selectedType) {
-          let drillHoleDTO: DrillHoleDTO = new DrillHoleDTO(result.systemId, result.name, result.isActive, selectedArea.id, selectedType.id);
+          let drillHoleDTO: DrillHoleDTO = new DrillHoleDTO(result.systemId, result.name, result.taskIssueDate, result.startDate, result.isActive, selectedArea.id, selectedType.id, result.depth);
           this.ds.create("drill-holes", drillHoleDTO).subscribe({
             next: () => {
               this.ss.showSuccess("Операция прошла успешно");
@@ -156,7 +158,7 @@ export class DrillHolesComponent implements OnInit {
         const selectedArea = this.areas.find(area => area.name === updatedDrillHole.area);
         const selectedType = this.drillHoleTypes.find(type => type.name === updatedDrillHole.drillHoleType);
         if (selectedArea && selectedType) {
-          let drillHoleDTO: DrillHoleDTO = new DrillHoleDTO(updatedDrillHole.systemId, updatedDrillHole.name, updatedDrillHole.isActive, selectedArea.id, selectedType.id);
+          let drillHoleDTO: DrillHoleDTO = new DrillHoleDTO(updatedDrillHole.systemId, updatedDrillHole.name, updatedDrillHole.taskIssueDate, updatedDrillHole.startDate, updatedDrillHole.isActive, selectedArea.id, selectedType.id, updatedDrillHole.depth);
           this.ds.update("drill-holes", drillHole.id, drillHoleDTO).subscribe({
             next: () => {
               this.ss.showSuccess("Операция прошла успешно");
@@ -214,4 +216,6 @@ export class DrillHolesComponent implements OnInit {
     }
     return sortItem.direction === 'asc' ? 'arrow_upward' : 'arrow_downward';
   }
+
+  protected readonly isValidDate = isValidDate;
 }

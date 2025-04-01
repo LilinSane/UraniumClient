@@ -28,6 +28,12 @@ export class CustomerModalComponent {
               @Inject(MAT_DIALOG_DATA) public customer: Customer) {
     this.form = this.fb.group({
       name: [customer.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      taxpayerNum: [customer.taxpayerNum, [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(12),
+        Validators.pattern(/^\d+$/)
+      ]],
       isActive: [customer.isActive, Validators.required]
     });
   }

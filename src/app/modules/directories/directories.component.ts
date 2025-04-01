@@ -56,4 +56,8 @@ export class DirectoriesComponent {
   setCurrentTable(name: String): void {
     this.currentTable = name;
   }
+
+  getTableTitle(): string {
+    return this.tableList.find(table => table.key === this.currentTable)?.title || "";
+  }
 }

@@ -1,5 +1,6 @@
 <app-navigation></app-navigation>
 <div class="container mt-5">
+  <h5 class="text-center">{{getTableTitle()}}</h5>
   <ng-container [ngSwitch]="currentTable">
     <app-customers *ngSwitchCase="'customer'"></app-customers>
     <app-areas *ngSwitchCase="'area'"></app-areas>

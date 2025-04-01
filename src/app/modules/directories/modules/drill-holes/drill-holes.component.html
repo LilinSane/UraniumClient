@@ -1,46 +1,77 @@
 <form [formGroup]="tableForm">
-  <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
-    <thead>
-    <tr class="table-header">
-      <th>№</th>
-      <th (click)="toggleSort('systemId')">
-        Код системный
-        <mat-icon *ngIf="getSortIcon('systemId')">{{ getSortIcon('systemId') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('name')">
-        Наименование
-        <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('isActive')">
-        Активен
-        <mat-icon *ngIf="getSortIcon('isActive')">{{ getSortIcon('isActive') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('area')">
-        Участок
-        <mat-icon *ngIf="getSortIcon('area')">{{ getSortIcon('area') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('drillHoleType')">
-        Тип
-        <mat-icon *ngIf="getSortIcon('drillHoleType')">{{ getSortIcon('drillHoleType') }}</mat-icon>
-      </th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let drillHole of drillHoles; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ drillHole.systemId }}</td>
-      <td>{{ drillHole.name }}</td>
-      <td>{{ drillHole.isActive ? "Да" : "Нет" }}</td>
-      <td>{{ drillHole.area.name }}</td>
-      <td>{{ drillHole.drillHoleType.name }}</td>
-      <td class="icon-td">
-        <span class="proicons--pencil mt-2" (click)="openModalUpdate(drillHole)"></span>
-        <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(drillHole.name, drillHole.id)"></span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
+      <thead>
+      <tr class="table-header">
+        <th>№</th>
+        <th (click)="toggleSort('id')">
+          Код системный
+          <mat-icon *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('systemId')">
+          Номер скважины
+          <mat-icon *ngIf="getSortIcon('systemId')">{{ getSortIcon('systemId') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('name')">
+          Наименование
+          <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('taskIssueDate')">
+          Дата выдачи задания
+          <mat-icon *ngIf="getSortIcon('taskIssueDate') as sortIcon">
+            {{ isValidDate(sortIcon) ? (sortIcon | date) : sortIcon }}
+          </mat-icon>
+        </th>
+        <th (click)="toggleSort('startDate')">
+          Дата выхода на точку
+          <mat-icon *ngIf="getSortIcon('startDate') as sortIcon">
+            {{ isValidDate(sortIcon) ? (sortIcon | date) : sortIcon }}
+          </mat-icon>
+        </th>
+        <th (click)="toggleSort('area')">
+          Участок
+          <mat-icon *ngIf="getSortIcon('area')">{{ getSortIcon('area') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('area.customer')">
+          Заказчик
+          <mat-icon *ngIf="getSortIcon('area.customer')">{{ getSortIcon('area.customer') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('drillHoleType')">
+          Вид
+          <mat-icon *ngIf="getSortIcon('drillHoleType')">{{ getSortIcon('drillHoleType') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('depth')">
+          Глубина (п/м)
+          <mat-icon *ngIf="getSortIcon('depth')">{{ getSortIcon('depth') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('isActive')">
+          Активен
+          <mat-icon *ngIf="getSortIcon('isActive')">{{ getSortIcon('isActive') }}</mat-icon>
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let drillHole of drillHoles; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ drillHole.id }}</td>
+        <td>{{ drillHole.systemId }}</td>
+        <td>{{ drillHole.name }}</td>
+        <td>{{ drillHole.taskIssueDate }}</td>
+        <td>{{ drillHole.startDate }}</td>
+        <td>{{ drillHole.area.name }}</td>
+        <td>{{ drillHole.area.customer.name }}</td>
+        <td>{{ drillHole.drillHoleType.name }}</td>
+        <td>{{ drillHole.depth }}</td>
+        <td>{{ drillHole.isActive ? "Да" : "Нет" }}</td>
+        <td class="icon-td">
+          <span class="proicons--pencil mt-2" (click)="openModalUpdate(drillHole)"></span>
+          <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(drillHole.name, drillHole.id)"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
   <ng-template #loadingTpl>
     <div class="loading-container d-flex flex-column align-items-center justify-content-center">

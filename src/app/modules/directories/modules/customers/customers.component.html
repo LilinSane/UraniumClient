@@ -1,47 +1,56 @@
 <form [formGroup]="tableForm">
-  <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
-    <thead>
-    <tr class="table-header">
-      <th>
-        №
-      </th>
-      <th (click)="toggleSort('id')">
-        Код системный
-        <mat-icon class="mt-2" *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('name')">
-        Наименование
-        <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('isActive')">
-        Активен
-        <mat-icon *ngIf="getSortIcon('isActive')">{{ getSortIcon('isActive') }}</mat-icon>
-      </th>
-      <th>
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let customer of customers; let i = index">
-      <td>
-        {{i + 1}}
-      </td>
-      <td>
-        {{customer.id}}
-      </td>
-      <td>
-        {{customer.name}}
-      </td>
-      <td>
-        {{customer.isActive ? "Да" : "Нет"}}
-      </td>
-      <td class="icon-td">
-        <span class="proicons--pencil mt-2" (click)="openModalUpdate(customer)"></span>
-        <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(customer.name, customer.id)"></span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
+      <thead>
+      <tr class="table-header">
+        <th>
+          №
+        </th>
+        <th (click)="toggleSort('id')">
+          Код системный
+          <mat-icon class="mt-2" *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('name')">
+          Наименование
+          <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('taxpayerNum')">
+          БИН/ИНН
+          <mat-icon *ngIf="getSortIcon('taxpayerNum')">{{ getSortIcon('taxpayerNum') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('isActive')">
+          Активен
+          <mat-icon *ngIf="getSortIcon('isActive')">{{ getSortIcon('isActive') }}</mat-icon>
+        </th>
+        <th>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let customer of customers; let i = index">
+        <td>
+          {{ i + 1 }}
+        </td>
+        <td>
+          {{ customer.id }}
+        </td>
+        <td>
+          {{ customer.name }}
+        </td>
+        <td>
+          {{ customer.taxpayerNum }}
+        </td>
+        <td>
+          {{ customer.isActive ? "Да" : "Нет" }}
+        </td>
+        <td class="icon-td">
+          <span class="proicons--pencil mt-2" (click)="openModalUpdate(customer)"></span>
+          <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(customer.name, customer.id)"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 
   <ng-template #loadingTpl>
     <div class="loading-container d-flex flex-column align-items-center justify-content-center">

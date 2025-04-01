@@ -1,36 +1,39 @@
 <form [formGroup]="tableForm">
-  <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
-    <thead>
-    <tr class="table-header">
-      <th>№</th>
-      <th (click)="toggleSort('id')">
-        Код системный
-        <mat-icon *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('name')">
-        Наименование
-        <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
-      </th>
-      <th (click)="toggleSort('workType')">
-        Тип работы
-        <mat-icon *ngIf="getSortIcon('workType')">{{ getSortIcon('workType') }}</mat-icon>
-      </th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let workSubType of workSubTypes; let i = index">
-      <td>{{ i + 1 }}</td>
-      <td>{{ workSubType.id }}</td>
-      <td>{{ workSubType.name }}</td>
-      <td>{{ workSubType.workType.name }}</td>
-      <td>
-        <span class="proicons--pencil" (click)="openModalUpdate(workSubType)"></span>
-        <span class="simple-line-icons--trash" (click)="openModalDelete(workSubType.name, workSubType.id)"></span>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="table-container">
+    <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
+      <thead>
+      <tr class="table-header">
+        <th>№</th>
+        <th (click)="toggleSort('id')">
+          Код системный
+          <mat-icon *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('name')">
+          Наименование
+          <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('workType')">
+          Тип работы
+          <mat-icon *ngIf="getSortIcon('workType')">{{ getSortIcon('workType') }}</mat-icon>
+        </th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let workSubType of workSubTypes; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ workSubType.id }}</td>
+        <td>{{ workSubType.name }}</td>
+        <td>{{ workSubType.workType.name }}</td>
+        <td>
+          <span class="proicons--pencil" (click)="openModalUpdate(workSubType)"></span>
+          <span class="simple-line-icons--trash" (click)="openModalDelete(workSubType.name, workSubType.id)"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
   <ng-template #loadingTpl>
     <div class="loading-container d-flex flex-column align-items-center justify-content-center">
       <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
