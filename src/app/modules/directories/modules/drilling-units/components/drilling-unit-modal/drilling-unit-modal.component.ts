@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from "@angular/material/radio";
-import { DrillingUnit } from "../../../../../../shared/models/entities/drillingUnit.model";
+import { DrillingUnit } from "../../../../../../shared/models/entities/directories/drillingUnit.model";
 
 @Component({
   selector: 'app-drilling-unit-modal',

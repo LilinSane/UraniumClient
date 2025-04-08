@@ -12,7 +12,7 @@ import { Sort } from "../../../../shared/models/sort.model";
 import { PageRequest } from "../../../../shared/models/pageRequest.model";
 import { MatIcon } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { WorkDirection } from "../../../../shared/models/entities/workDirection.model";
+import { WorkDirection } from "../../../../shared/models/entities/directories/workDirection.model";
 import { WorkDirectionModalComponent } from "./components/work-direction-modal/work-direction-modal.component"; // Модальное окно
 
 @Component({
@@ -60,7 +60,7 @@ export class WorkDirectionsComponent implements OnInit {
     this.ds.getByPage("work-directions", pageRequest).subscribe({
       next: (data: Page<unknown>) => {
         this.workDirections = data.content as WorkDirection[];
-        this.totalItems = data.totalElements;
+        this.totalItems = data.page.totalElements;
         this.isLoading = false;
       },
       error: error => {

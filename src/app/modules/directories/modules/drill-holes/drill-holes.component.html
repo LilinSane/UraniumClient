@@ -18,15 +18,11 @@
         </th>
         <th (click)="toggleSort('taskIssueDate')">
           Дата выдачи задания
-          <mat-icon *ngIf="getSortIcon('taskIssueDate') as sortIcon">
-            {{ isValidDate(sortIcon) ? (sortIcon | date) : sortIcon }}
-          </mat-icon>
+          <mat-icon *ngIf="getSortIcon('taskIssueDate') as sortIcon">{{ getSortIcon('taskIssueDate') }}</mat-icon>
         </th>
         <th (click)="toggleSort('startDate')">
           Дата выхода на точку
-          <mat-icon *ngIf="getSortIcon('startDate') as sortIcon">
-            {{ isValidDate(sortIcon) ? (sortIcon | date) : sortIcon }}
-          </mat-icon>
+          <mat-icon *ngIf="getSortIcon('startDate') as sortIcon">{{ getSortIcon('startDate') }}</mat-icon>
         </th>
         <th (click)="toggleSort('area')">
           Участок
@@ -57,8 +53,8 @@
         <td>{{ drillHole.id }}</td>
         <td>{{ drillHole.systemId }}</td>
         <td>{{ drillHole.name }}</td>
-        <td>{{ drillHole.taskIssueDate }}</td>
-        <td>{{ drillHole.startDate }}</td>
+        <td>{{ drillHole.taskIssueDate | date:'dd.MM.yyyy' }}</td>
+        <td>{{ drillHole.startDate | date:'dd.MM.yyyy' }}</td>
         <td>{{ drillHole.area.name }}</td>
         <td>{{ drillHole.area.customer.name }}</td>
         <td>{{ drillHole.drillHoleType.name }}</td>

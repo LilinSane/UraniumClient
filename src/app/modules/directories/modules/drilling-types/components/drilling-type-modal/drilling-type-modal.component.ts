@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { DrillingType } from "../../../../../../shared/models/entities/drillingType.model";
+import { DrillingType } from "../../../../../../shared/models/entities/directories/drillingType.model";
 
 @Component({
   selector: 'app-drilling-type-modal',

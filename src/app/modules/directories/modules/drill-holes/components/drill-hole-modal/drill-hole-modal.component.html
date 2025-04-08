@@ -20,7 +20,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Дата выдачи задания</mat-label>
       <input matInput [matDatepicker]="taskIssueDatePicker" formControlName="taskIssueDate" required>
-      <mat-hint>ММ.ДД.ГГГГ</mat-hint>
+      <mat-hint>ДД.ММ.ГГГГ</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="taskIssueDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #taskIssueDatePicker></mat-datepicker>
       <mat-error *ngIf="form.get('taskIssueDate')?.hasError('required')">
@@ -31,7 +31,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Дата начала бурения</mat-label>
       <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" required>
-      <mat-hint>ММ.ДД.ГГГГ</mat-hint>
+      <mat-hint>ДД.ММ.ГГГГ</mat-hint>
       <mat-datepicker-toggle matIconSuffix [for]="startDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #startDatePicker></mat-datepicker>
       <mat-error *ngIf="form.get('startDate')?.hasError('required')">

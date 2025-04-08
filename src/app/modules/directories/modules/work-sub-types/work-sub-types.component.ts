@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WorkSubType, WorkSubTypeDTO } from '../../../../shared/models/entities/workSubType.model';
+import { WorkSubType, WorkSubTypeDTO } from '../../../../shared/models/entities/directories/workSubType.model';
 import { DirectoriesService } from '../../services/directories.service';
 import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,7 +14,7 @@ import { Sort } from '../../../../shared/models/sort.model';
 import { PageRequest } from '../../../../shared/models/pageRequest.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { WorkType } from "../../../../shared/models/entities/workType.model";
+import { WorkType } from "../../../../shared/models/entities/directories/workType.model";
 
 @Component({
   selector: 'app-work-sub-types',
@@ -74,7 +74,7 @@ export class WorkSubTypesComponent implements OnInit {
       .subscribe({
         next: (data: Page<unknown>) => {
           this.workSubTypes = data.content as WorkSubType[];
-          this.totalItems = data.totalElements;
+          this.totalItems = data.page.totalElements;
           this.isLoading = false;
         },
         error: error => {

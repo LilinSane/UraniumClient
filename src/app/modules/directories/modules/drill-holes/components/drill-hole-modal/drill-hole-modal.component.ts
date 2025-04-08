@@ -6,11 +6,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatAutocomplete, MatAutocompleteTrigger, MatOption } from '@angular/material/autocomplete';
-import { DirectoriesService } from "../../../../services/directories.service";
 import { Observable, startWith, map } from "rxjs";
-import {DrillHole} from "../../../../../../shared/models/entities/drillHole.model";
-import {Area} from "../../../../../../shared/models/entities/area.model";
-import {DrillHoleType} from "../../../../../../shared/models/entities/drillHoleType.model";
+import {DrillHole} from "../../../../../../shared/models/entities/directories/drillHole.model";
+import {Area} from "../../../../../../shared/models/entities/directories/area.model";
+import {DrillHoleType} from "../../../../../../shared/models/entities/directories/drillHoleType.model";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 
 @Component({
@@ -38,16 +37,12 @@ export class DrillHoleModalComponent {
   filteredAreas: Observable<Area[]>;
   filteredDrillHoleTypes: Observable<DrillHoleType[]>;
 
-  constructor(private ds: DirectoriesService,
-              private fb: FormBuilder,
+  constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<DrillHoleModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: { drillHole: DrillHole, areas: Area[], drillHoleTypes: DrillHoleType[] }) {
     this.areas = data.areas;
     this.drillHoleTypes = data.drillHoleTypes;
     this.drillHole = data.drillHole;
-    console.log(this.drillHole.area);
-    console.log(this.drillHole.drillHoleType);
-    console.log(this.drillHole);
     this.form = this.fb.group({
       systemId: [this.drillHole.systemId, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
       name: [this.drillHole.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],

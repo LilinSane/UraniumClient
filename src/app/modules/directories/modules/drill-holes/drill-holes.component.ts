@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DatePipe, NgForOf, NgIf} from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DrillHole, DrillHoleDTO } from '../../../../shared/models/entities/drillHole.model';
+import { DrillHole, DrillHoleDTO } from '../../../../shared/models/entities/directories/drillHole.model';
 import { DirectoriesService } from '../../services/directories.service';
 import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,8 +15,8 @@ import { PageRequest } from '../../../../shared/models/pageRequest.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { delay } from 'rxjs';
-import { Area } from "../../../../shared/models/entities/area.model";
-import { DrillHoleType } from "../../../../shared/models/entities/drillHoleType.model";
+import { Area } from "../../../../shared/models/entities/directories/area.model";
+import { DrillHoleType } from "../../../../shared/models/entities/directories/drillHoleType.model";
 import {isValidDate} from "rxjs/internal/util/isDate";
 
 @Component({
@@ -88,8 +88,7 @@ export class DrillHolesComponent implements OnInit {
     ).subscribe({
         next: (data: Page<unknown>) => {
           this.drillHoles = data.content as DrillHole[];
-          console.log(this.drillHoles);
-          this.totalItems = data.totalElements;
+          this.totalItems = data.page.totalElements;
           this.isLoading = false;
         },
         error: error => {
@@ -121,11 +120,8 @@ export class DrillHolesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
         const selectedArea = this.areas.find(area => area.name === result.area);
         const selectedType = this.drillHoleTypes.find(type => type.name === result.drillHoleType);
-        console.log(selectedArea);
-        console.log(selectedType);
         if (selectedArea && selectedType) {
           let drillHoleDTO: DrillHoleDTO = new DrillHoleDTO(result.systemId, result.name, result.taskIssueDate, result.startDate, result.isActive, selectedArea.id, selectedType.id, result.depth);
           this.ds.create("drill-holes", drillHoleDTO).subscribe({
@@ -155,6 +151,7 @@ export class DrillHolesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(updatedDrillHole => {
       if (updatedDrillHole) {
+        console.log(updatedDrillHole);
         const selectedArea = this.areas.find(area => area.name === updatedDrillHole.area);
         const selectedType = this.drillHoleTypes.find(type => type.name === updatedDrillHole.drillHoleType);
         if (selectedArea && selectedType) {
@@ -217,5 +214,4 @@ export class DrillHolesComponent implements OnInit {
     return sortItem.direction === 'asc' ? 'arrow_upward' : 'arrow_downward';
   }
 
-  protected readonly isValidDate = isValidDate;
 }

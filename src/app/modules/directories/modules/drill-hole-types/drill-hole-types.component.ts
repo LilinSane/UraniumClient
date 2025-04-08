@@ -13,7 +13,7 @@ import { Sort } from "../../../../shared/models/sort.model";
 import { PageRequest } from "../../../../shared/models/pageRequest.model";
 import { MatIcon } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import {DrillHoleType} from "../../../../shared/models/entities/drillHoleType.model";
+import {DrillHoleType} from "../../../../shared/models/entities/directories/drillHoleType.model";
 
 @Component({
   selector: 'app-drill-hole-types',
@@ -60,7 +60,7 @@ export class DrillHoleTypesComponent implements OnInit {
     this.ds.getByPage("drill-hole-types", pageRequest).subscribe({
       next: (data: Page<unknown>) => {
         this.drillHoleTypes = data.content as DrillHoleType[];
-        this.totalItems = data.totalElements;
+        this.totalItems = data.page.totalElements;
         this.isLoading = false;
       },
       error: error => {

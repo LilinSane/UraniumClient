@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from "@angular/material/radio";
-import {Customer} from "../../../../../../shared/models/entities/customer.model";
+import {Customer} from "../../../../../../shared/models/entities/directories/customer.model";
 
 @Component({
   selector: 'app-customer-modal',

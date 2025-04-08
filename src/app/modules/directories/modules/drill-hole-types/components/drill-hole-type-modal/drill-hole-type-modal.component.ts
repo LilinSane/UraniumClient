@@ -4,7 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {DrillHoleType} from "../../../../../../shared/models/entities/drillHoleType.model";
+import {DrillHoleType} from "../../../../../../shared/models/entities/directories/drillHoleType.model";
 
 @Component({
   selector: 'app-drill-hole-type-modal',

@@ -5,9 +5,9 @@ import {CommonModule} from '@angular/common';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import {MatRadioModule} from '@angular/material/radio';
-import {Area} from "../../../../../../shared/models/entities/area.model";
+import {Area} from "../../../../../../shared/models/entities/directories/area.model";
 import {MatAutocomplete, MatAutocompleteTrigger, MatOption} from "@angular/material/autocomplete";
-import {Customer} from "../../../../../../shared/models/entities/customer.model";
+import {Customer} from "../../../../../../shared/models/entities/directories/customer.model";
 import {DirectoriesService} from "../../../../services/directories.service";
 import {map, Observable, startWith} from "rxjs";  // Измените путь, если нужно
 

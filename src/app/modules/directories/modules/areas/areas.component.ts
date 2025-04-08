@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {Area, AreaDTO} from '../../../../shared/models/entities/area.model';
+import {Area, AreaDTO} from '../../../../shared/models/entities/directories/area.model';
 import { DirectoriesService } from '../../services/directories.service';
 import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,7 +15,7 @@ import { PageRequest } from '../../../../shared/models/pageRequest.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { delay } from 'rxjs';
-import {Customer} from "../../../../shared/models/entities/customer.model";
+import {Customer} from "../../../../shared/models/entities/directories/customer.model";
 
 @Component({
   selector: 'app-areas',
@@ -77,7 +77,7 @@ export class AreasComponent implements OnInit {
       .subscribe({
         next: (data: Page<unknown>) => {
           this.areas = data.content as Area[];
-          this.totalItems = data.totalElements;
+          this.totalItems = data.page.totalElements;
           this.isLoading = false;
         },
         error: error => {

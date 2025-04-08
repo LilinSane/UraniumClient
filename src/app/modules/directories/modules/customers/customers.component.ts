@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {Customer} from "../../../../shared/models/entities/customer.model";
+import {Customer} from "../../../../shared/models/entities/directories/customer.model";
 import {DirectoriesService} from "../../services/directories.service";
 import {MatButton} from "@angular/material/button";
 import {MatDialog} from "@angular/material/dialog";
@@ -65,7 +65,7 @@ export class CustomersComponent implements OnInit{
     ).subscribe({
       next: (data: Page<unknown>) => {
         this.customers = data.content as Customer[];
-        this.totalItems = data.totalElements;
+        this.totalItems = data.page.totalElements;
         this.isLoading = false;
       },
       error: error => {

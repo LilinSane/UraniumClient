@@ -4,7 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { WorkDirection } from '../../../../../../shared/models/entities/workDirection.model';
+import { WorkDirection } from '../../../../../../shared/models/entities/directories/workDirection.model';
 
 @Component({
   selector: 'app-work-direction-modal',

@@ -5,10 +5,10 @@ import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
-import { WorkSubType } from "../../../../../../shared/models/entities/workSubType.model";
+import { WorkSubType } from "../../../../../../shared/models/entities/directories/workSubType.model";
 import { MatAutocomplete, MatAutocompleteTrigger, MatOption } from "@angular/material/autocomplete";
 import { map, Observable, startWith } from "rxjs";
-import {WorkType} from "../../../../../../shared/models/entities/workType.model";
+import {WorkType} from "../../../../../../shared/models/entities/directories/workType.model";
 
 @Component({
   selector: 'app-work-sub-type-modal',

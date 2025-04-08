@@ -1,0 +1,51 @@
+<div class="modal-container">
+  <p>Добавить/Редактировать Шапку</p>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Выберите Скважину</mat-label>
+      <input type="text" matInput [matAutocomplete]="autoDrillHole" formControlName="drillHole" required>
+      <mat-autocomplete #autoDrillHole="matAutocomplete">
+        <mat-option *ngFor="let drillHole of filteredDrillHoles | async" [value]="drillHole.name">
+          {{ drillHole.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('drillHole')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Дата</mat-label>
+      <input matInput [matDatepicker]="datePicker" formControlName="date" required>
+      <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker #datePicker></mat-datepicker>
+      <mat-error *ngIf="form.get('date')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-label>Активен</mat-label>
+    <mat-radio-group formControlName="isActive" required>
+      <mat-radio-button [value]="true">Да</mat-radio-button>
+      <mat-radio-button [value]="false">Нет</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Выберите Тип Бурения</mat-label>
+      <input type="text" matInput [matAutocomplete]="autoDrillingType" formControlName="drillingType" required>
+      <mat-autocomplete #autoDrillingType="matAutocomplete">
+        <mat-option *ngFor="let drillingType of filteredDrillingTypes | async" [value]="drillingType.name">
+          {{ drillingType.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('drillingType')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-button color="danger" (click)="onCancel()">Отмена</button>
+      <button mat-button color="success" (click)="onSave()" [disabled]="form.invalid">Сохранить</button>
+    </div>
+  </form>
+</div>

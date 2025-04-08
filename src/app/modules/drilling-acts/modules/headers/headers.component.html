@@ -1,0 +1,77 @@
+<div class="table-container">
+  <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
+    <thead>
+    <tr class="table-header">
+      <th>№</th>
+      <th (click)="toggleSort('id')">
+        Номер документа
+        <mat-icon *ngIf="getSortIcon('id')">{{ getSortIcon('id') }}</mat-icon>
+      </th>
+      <th (click)="toggleSort('drillHole')">
+        Номер скважины
+        <mat-icon *ngIf="getSortIcon('drillHole')">{{ getSortIcon('drillHole') }}</mat-icon>
+      </th>
+      <th (click)="toggleSort('date')">
+        Дата
+        <mat-icon *ngIf="getSortIcon('date')">{{ getSortIcon('date') }}</mat-icon>
+      </th>
+      <th (click)="toggleSort('drillingType')">
+        Вид бурения
+        <mat-icon *ngIf="getSortIcon('drillingType') as sortIcon">{{ getSortIcon('drillingType') }}</mat-icon>
+      </th>
+      <th (click)="toggleSort('isActive')">
+        Активен
+        <mat-icon *ngIf="getSortIcon('isActive')">{{ getSortIcon('isActive') }}</mat-icon>
+      </th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let header of headers; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ header.id }}</td>
+      <td>{{ header.drillHole.systemId }}</td>
+      <td>{{ header.date | date:'dd.MM.yyyy' }}</td>
+      <td>{{ header.drillingType.name }}</td>
+      <td>{{ header.isActive ? "Да" : "Нет" }}</td>
+      <td class="icon-td">
+        <span class="proicons--pencil mt-2" (click)="openModalUpdate(header)"></span>
+        <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(header.id.toString(), header.id)"></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="loading-container d-flex flex-column align-items-center justify-content-center">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+    <p>Загрузка данных...</p>
+  </div>
+</ng-template>
+
+<div class="container d-flex justify-content-end mt-3" *ngIf="!isLoading">
+  <div>
+    <button mat-button color="success" type="button" (click)="openModalCreate()">Добавить запись</button>
+  </div>
+</div>
+
+
+<div class="d-flex flex-column align-items-center" *ngIf="!isLoading">
+  <div class="mb-2">
+    Страница {{ currentPage }} из {{ numPages }}
+  </div>
+  <pagination
+    [boundaryLinks]="true"
+    [totalItems]="totalItems"
+    [itemsPerPage]="itemsPerPage"
+    [(ngModel)]="currentPage"
+    [maxSize]="maxSize"
+    (numPages)="numPages = $event"
+    (pageChanged)="onPageChange($event)"
+    previousText="< Назад"
+    nextText="Вперед >"
+    firstText="<<"
+    lastText=">>">
+  </pagination>
+</div>

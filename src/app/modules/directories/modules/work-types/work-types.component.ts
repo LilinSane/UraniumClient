@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { WorkType, WorkTypeDTO } from '../../../../shared/models/entities/workType.model';
+import { WorkType, WorkTypeDTO } from '../../../../shared/models/entities/directories/workType.model';
 import { DirectoriesService } from '../../services/directories.service';
 import { MatButton } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
@@ -14,9 +14,9 @@ import { Sort } from '../../../../shared/models/sort.model';
 import { PageRequest } from '../../../../shared/models/pageRequest.model';
 import { MatIcon } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import {WorkDirection} from "../../../../shared/models/entities/workDirection.model";
-import {Customer} from "../../../../shared/models/entities/customer.model";
-import {AreaDTO} from "../../../../shared/models/entities/area.model";
+import {WorkDirection} from "../../../../shared/models/entities/directories/workDirection.model";
+import {Customer} from "../../../../shared/models/entities/directories/customer.model";
+import {AreaDTO} from "../../../../shared/models/entities/directories/area.model";
 
 @Component({
   selector: 'app-work-types',
@@ -76,7 +76,7 @@ export class WorkTypesComponent implements OnInit {
       .subscribe({
         next: (data: Page<unknown>) => {
           this.workTypes = data.content as WorkType[];
-          this.totalItems = data.totalElements;
+          this.totalItems = data.page.totalElements;
           this.isLoading = false;
         },
         error: error => {

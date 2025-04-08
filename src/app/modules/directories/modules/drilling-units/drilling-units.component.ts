@@ -13,7 +13,7 @@ import { Sort } from "../../../../shared/models/sort.model";
 import { PageRequest } from "../../../../shared/models/pageRequest.model";
 import { MatIcon } from "@angular/material/icon";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
-import { DrillingUnit } from "../../../../shared/models/entities/drillingUnit.model";
+import { DrillingUnit } from "../../../../shared/models/entities/directories/drillingUnit.model";
 
 @Component({
   selector: 'app-drilling-units',
@@ -60,7 +60,7 @@ export class DrillingUnitsComponent implements OnInit {
     this.ds.getByPage("drilling-units", pageRequest).subscribe({
       next: (data: Page<unknown>) => {
         this.drillingUnits = data.content as DrillingUnit[];
-        this.totalItems = data.totalElements;
+        this.totalItems = data.page.totalElements;
         this.isLoading = false;
       },
       error: error => {
