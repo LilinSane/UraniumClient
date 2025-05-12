@@ -1,0 +1,31 @@
+.header-info {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header-info h4 {
+  margin-bottom: 20px;
+}
+
+.header-info .row p {
+  margin: 5px 0;
+}
+
+::ng-deep pagination .page-item.active .page-link {
+  background-color: black !important;
+  border-color: black !important;
+  color: white !important;
+}
+
+::ng-deep pagination .page-item .page-link {
+
+  color: #313131 !important;
+  border-radius: 4px;
+  padding: 8px 12px;
+}
+
+::ng-deep pagination .page-item{
+  margin-right: 10px;
+}

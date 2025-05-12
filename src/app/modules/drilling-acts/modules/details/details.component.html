@@ -1,0 +1,125 @@
+<app-navigation></app-navigation>
+<div class="container mt-5">
+  <h5 class="text-center">Справка № {{ actId }}</h5>
+<!--  <div class="container d-flex justify-content-end mb-3" *ngIf="!isLoading">-->
+<!--    <button mat-button color="success" type="button" (click)="setIsActive(!this.header?.isActive)">{{this.header?.isActive ? "Отменить акт" : "Актировать"}}</button>-->
+<!--  </div>-->
+  <div *ngIf="header" class="header-info mb-4">
+    <h6 class="text-center">Информация о справке</h6>
+    <div class="row">
+      <div class="col-md-6">
+        <p><strong>Номер скважины:</strong> {{ header.drillHole.systemId }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Вид скважины:</strong> {{ header.drillHole.drillHoleType.name }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Участок:</strong> {{ header.drillHole.area.name }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Заказчик:</strong> {{ header.drillHole.area.customer.name }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Вид операции:</strong> Буровые работы </p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Вид бурения: </strong>{{ header.drillingType.name }}</p>
+      </div>
+      <div class="col-md-6">
+        <p><strong>Дата:</strong> {{ header.date | date: 'dd.MM.yyyy' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-container">
+    <table class="table table-bordered" *ngIf="!isLoading; else loadingTpl">
+      <thead>
+      <tr class="table-header">
+        <th>#</th>
+        <th (click)="toggleSort('drillingUnit')">Агрегат
+          <mat-icon>{{ getSortIcon('drillingUnit') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('shift')">Смена
+          <mat-icon>{{ getSortIcon('shift') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('rotation')">Вахта
+          <mat-icon>{{ getSortIcon('rotation') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('date')">Дата
+          <mat-icon>{{ getSortIcon('date') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('startTime')">Время начала
+          <mat-icon>{{ getSortIcon('startTime') }}</mat-icon>
+        </th>
+        <th (click)="toggleSort('endTime')">Время окончания
+          <mat-icon>{{ getSortIcon('endTime') }}</mat-icon>
+        </th>
+        <th>Затраченное время</th>
+        <th>Затраченное время вахто/час</th>
+        <th>Вид работы</th>
+        <th>Расшифровка работы</th>
+        <th (click)="toggleSort('depth')">Глубина проходки
+          <mat-icon>{{ getSortIcon('depth') }}</mat-icon>
+        </th>
+        <th>Пробурено п/м</th>
+        <th>Актировано</th>
+        <th>GIS</th>
+        <th>Состояние</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let detail of details; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ detail.drillingUnit.name }}</td>
+        <td>{{ detail.shift }}</td>
+        <td>{{ detail.rotation }}</td>
+        <td>{{ detail.date | date: 'dd.MM.yyyy' }}</td>
+        <td>{{ detail.startTime }}</td>
+        <td>{{ detail.endTime }}</td>
+        <td>{{ getTimeDiff(detail.startTime, detail.endTime) }}</td>
+        <td>{{ detail.workedTime }}</td>
+        <td>{{ detail.workSubType.workType.name }}</td>
+        <td>{{ detail.workSubType.name }}</td>
+        <td>{{ detail.depth }}</td>
+        <td>{{ i === 0 ? detail.depth : (detail.depth - details[i - 1].depth) }}</td>
+        <td>{{ detail.acted }}</td>
+        <td>{{ detail.resultGIS }}</td>
+        <td>{{ detail.drillHoleState }}</td>
+        <td class="icon-td">
+          <span class="proicons--pencil mt-2" (click)="openModalUpdate(detail)"></span>
+          <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(detail.id.toString(), detail.id)"></span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #loadingTpl>
+    <div class="loading-container d-flex flex-column align-items-center justify-content-center">
+      <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      <p>Загрузка данных...</p>
+    </div>
+  </ng-template>
+
+  <div class="container d-flex justify-content-end mt-3" *ngIf="!isLoading">
+    <button mat-button color="success" type="button" (click)="openModalCreate()">Добавить запись</button>
+  </div>
+
+  <div class="d-flex flex-column align-items-center" *ngIf="!isLoading">
+    <div class="mb-2">Страница {{ currentPage }} из {{ numPages }}</div>
+    <pagination
+      [boundaryLinks]="true"
+      [totalItems]="totalItems"
+      [itemsPerPage]="itemsPerPage"
+      [(ngModel)]="currentPage"
+      [maxSize]="maxSize"
+      (numPages)="numPages = $event"
+      (pageChanged)="onPageChange($event)"
+      previousText="< Назад"
+      nextText="Вперед >"
+      firstText="<<"
+      lastText=">>">
+    </pagination>
+  </div>
+</div>

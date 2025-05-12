@@ -15,7 +15,9 @@
 </div>
 <p class="ms-5">Список справочников</p>
 <div class="d-flex flex-wrap" >
-  <app-table-card class="p-3" *ngFor="let table of tableList" [title]="table.title" (click)="setCurrentTable(table.key)"></app-table-card>
+  <app-table-card class="p-3" *ngFor="let table of tableList" [title]="table.title"
+                  (click)="setCurrentTable(table.key)">
+  </app-table-card>
 </div>
 
 

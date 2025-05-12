@@ -17,6 +17,7 @@ import {DatePipe, NgForOf, NgIf} from "@angular/common";
 import {PaginationComponent} from "ngx-bootstrap/pagination";
 import {FormsModule} from "@angular/forms";
 import {HeaderModalComponent} from "./components/header-modal/header-modal.component";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-headers',
@@ -29,7 +30,8 @@ import {HeaderModalComponent} from "./components/header-modal/header-modal.compo
     NgIf,
     PaginationComponent,
     FormsModule,
-    DatePipe
+    DatePipe,
+    RouterLink
   ],
   templateUrl: './headers.component.html',
   styleUrl: './headers.component.css'

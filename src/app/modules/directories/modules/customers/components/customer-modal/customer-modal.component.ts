@@ -27,7 +27,9 @@ export class CustomerModalComponent {
               private dialogRef: MatDialogRef<CustomerModalComponent>,
               @Inject(MAT_DIALOG_DATA) public customer: Customer) {
     this.form = this.fb.group({
-      name: [customer.name, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]],
+      name: [customer.name, [Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(255)]],
       taxpayerNum: [customer.taxpayerNum, [
         Validators.required,
         Validators.minLength(10),

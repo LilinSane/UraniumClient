@@ -61,7 +61,6 @@ export class CustomersComponent implements OnInit{
       sort: this.sort
     };
     this.ds.getByPage("customers", pageRequest).pipe(
-      //delay(Math.floor(Math.random() * 2000) + 1000)
     ).subscribe({
       next: (data: Page<unknown>) => {
         this.customers = data.content as Customer[];

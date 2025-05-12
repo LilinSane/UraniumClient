@@ -12,10 +12,6 @@
           Номер скважины
           <mat-icon *ngIf="getSortIcon('systemId')">{{ getSortIcon('systemId') }}</mat-icon>
         </th>
-        <th (click)="toggleSort('name')">
-          Наименование
-          <mat-icon *ngIf="getSortIcon('name')">{{ getSortIcon('name') }}</mat-icon>
-        </th>
         <th (click)="toggleSort('taskIssueDate')">
           Дата выдачи задания
           <mat-icon *ngIf="getSortIcon('taskIssueDate') as sortIcon">{{ getSortIcon('taskIssueDate') }}</mat-icon>
@@ -52,7 +48,6 @@
         <td>{{ i + 1 }}</td>
         <td>{{ drillHole.id }}</td>
         <td>{{ drillHole.systemId }}</td>
-        <td>{{ drillHole.name }}</td>
         <td>{{ drillHole.taskIssueDate | date:'dd.MM.yyyy' }}</td>
         <td>{{ drillHole.startDate | date:'dd.MM.yyyy' }}</td>
         <td>{{ drillHole.area.name }}</td>

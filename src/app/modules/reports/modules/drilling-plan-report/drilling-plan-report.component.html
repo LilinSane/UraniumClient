@@ -1,0 +1,38 @@
+<div class="table-container">
+  <table class="table table-bordered">
+    <thead>
+    <tr class="table-header">
+      <th>№</th>
+      <th>Код скважины</th>
+      <th>Агрегат</th>
+      <th>Участок</th>
+      <th>Заказчик</th>
+      <th>Тип бурения</th>
+      <th>План ПМ</th>
+      <th>Пробурено ПМ</th>
+      <th>Актировано ПМ</th>
+      <th>БРВ, вахто/час</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let report of report; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ report.drillHoleId }}</td>
+      <td>{{ report.drillingUnitName }}</td>
+      <td>{{ report.areaName }}</td>
+      <td>{{ report.customerName }}</td>
+      <td>{{ report.drillingTypeName }}</td>
+      <td>{{ report.planedDepth }}</td>
+      <td>{{ report.drilledDepth }}</td>
+      <td>{{ report.actedDepth }}</td>
+      <td>{{ report.workedTime }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container d-flex justify-content-end mt-3">
+  <div>
+    <button mat-button color="success" type="button" (click)="downloadExcel()">Экспортировать</button>
+  </div>
+</div>

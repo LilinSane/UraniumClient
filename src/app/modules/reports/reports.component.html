@@ -1,1 +1,14 @@
 <app-navigation></app-navigation>
+<div class="container mt-5">
+  <h5 class="text-center">{{getTableTitle()}}</h5>
+  <ng-container [ngSwitch]="currentReport">
+    <app-production-report *ngSwitchCase="'main'" [report]="productionReport" [period]="period"></app-production-report>
+    <app-drilling-plan-report *ngSwitchCase="'plan'" [report]="drillingPlanReport" [period]="period"></app-drilling-plan-report>
+  </ng-container>
+</div>
+<p class="ms-5">Список отчетов</p>
+<div class="d-flex flex-wrap" >
+  <app-table-card class="p-3" *ngFor="let table of reportList" [title]="table.title"
+                  (click)="setCurrentTable(table.key); openModalGenerate()">
+  </app-table-card>
+</div>

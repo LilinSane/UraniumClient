@@ -1,0 +1,103 @@
+<div class="modal-container">
+  <p>Добавить/Редактировать Запись</p>
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline">
+      <mat-label>Смена</mat-label>
+      <input matInput type="number" formControlName="shift" required>
+      <mat-error *ngIf="form.get('shift')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Вахта</mat-label>
+      <input matInput type="number" formControlName="rotation" required>
+      <mat-error *ngIf="form.get('rotation')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Дата</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="date" required>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('date')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Начало</mat-label>
+      <input matInput type="time" formControlName="startTime" required>
+      <mat-error *ngIf="form.get('startTime')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Конец</mat-label>
+      <input matInput type="time" formControlName="endTime" required>
+      <mat-error *ngIf="form.get('endTime')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Глубина</mat-label>
+      <input matInput type="number" formControlName="depth" required>
+      <mat-error *ngIf="form.get('depth')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+      <mat-error *ngIf="form.get('depth')?.hasError('min')">
+        Глубина должна быть больше или равна 0
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Актировано</mat-label>
+      <input matInput type="number" formControlName="acted">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Установка</mat-label>
+      <input type="text" matInput [matAutocomplete]="autoUnit" formControlName="drillingUnit" required>
+      <mat-autocomplete #autoUnit="matAutocomplete">
+        <mat-option *ngFor="let unit of filteredDrillingUnits | async" [value]="unit.name">
+          {{ unit.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('drillingUnit')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Работа</mat-label>
+      <input type="text" matInput [matAutocomplete]="autoWork" formControlName="workSubType" required>
+      <mat-autocomplete #autoWork="matAutocomplete">
+        <mat-option *ngFor="let work of filteredWorkSubTypes | async" [value]="work.name">
+          {{ work.name }}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('workSubType')?.hasError('required')">
+        Поле обязательно для заполнения
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>GIS</mat-label>
+      <input matInput formControlName="resultGIS">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Состояние</mat-label>
+      <input matInput formControlName="drillHoleState">
+    </mat-form-field>
+
+    <div class="button-container">
+      <button mat-button color="danger" (click)="onCancel()">Отмена</button>
+      <button mat-button color="success" (click)="onSave()" [disabled]="form.invalid">Сохранить</button>
+    </div>
+  </form>
+</div>

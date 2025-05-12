@@ -20,7 +20,7 @@
         <mat-icon *ngIf="getSortIcon('drillingType') as sortIcon">{{ getSortIcon('drillingType') }}</mat-icon>
       </th>
       <th (click)="toggleSort('isActive')">
-        Активен
+        Актирован
         <mat-icon *ngIf="getSortIcon('isActive')">{{ getSortIcon('isActive') }}</mat-icon>
       </th>
       <th></th>
@@ -37,6 +37,11 @@
       <td class="icon-td">
         <span class="proicons--pencil mt-2" (click)="openModalUpdate(header)"></span>
         <span class="simple-line-icons--trash mt-2" (click)="openModalDelete(header.id.toString(), header.id)"></span>
+        <span
+          class="akar-icons--file mt-2"
+          [routerLink]="[header.id]"
+          style="cursor: pointer">
+        </span>
       </td>
     </tr>
     </tbody>
